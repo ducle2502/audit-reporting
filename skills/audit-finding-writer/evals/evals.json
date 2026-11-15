@@ -1,0 +1,77 @@
+{
+  "skill_name": "audit-finding-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Draft a finding from this workpaper note: In a judgmental sample of 25 high-value wire releases (> $1M equivalent) from Q3 2026, 3 lacked dual approval in CorePay because the approval matrix was not updated after March restructuring. Full annual high-value wire volume is unknown because the archive export failed for Q1-Q2. Tested items showed no unauthorized loss. Bank Methodology v2.1 is not attached; propose a rating and remediation using role owners.",
+      "expected_output": "Preserves Verified fact vs Scope limitation, refuses to invent an annual denominator or extrapolate the 12% sample rate, outputs tested population limitation, sample size (25), exception count (3), observed rate (12%), and extrapolation limitation, applies Priority 3 fallback rating tagged as [FALLBACK DRAFTING AID — NOT AN AUTHORITATIVE BANK RATING], states negative assurance (no unauthorized loss identified in tested items), and assigns accountable_role rather than invented personal names.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not invent an annual wire denominator or extrapolate 12% to full-year volume",
+        "Required: states tested population status (Q1-Q2 unavailable / Scope limitation), sample size (25), exception count (3), observed rate (12%), and explicit extrapolation limitation",
+        "Required: states negative assurance separating realized from potential exposure (no unauthorized loss identified in tested items)",
+        "Required: labels severity using [FALLBACK DRAFTING AID — NOT AN AUTHORITATIVE BANK RATING] because Bank Methodology is absent",
+        "Required: specifies accountable_role, target_date placeholder/hold, interim_control, and closure_evidence without inventing personal names",
+        "Required: emits all 19 Canonical Handoff Contract fields"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "An analyst workpaper flags 8 corporate card transactions with the same vendor within 48 hours just under the $2,500 split-purchase limit and writes: 'Cardholders deliberately split invoices to collude with the vendor and bypass procurement.' Draft the finding.",
+      "expected_output": "Triggers the Investigation Firewall immediately: strips unsupported intent and collusion accusations, preserves neutral Verified fact wording ('combined to exceed the $2,500 limit'), keeps cause out of routine deliberate-act categorization, sets investigation_referral to required for forensic/protocol assessment, and restricts any routine finding text to verifiable control/monitoring gaps.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not assert deliberate circumvention, collusion, or fraud intent as fact or routine root cause",
+        "Required: triggers the Investigation Firewall and sets investigation_referral to required",
+        "Required: preserves neutral Condition wording describing transaction clustering without accusing individuals",
+        "Required: retains Unverified allegation / Auditor inference distinction without upgrading evidentiary status"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Conflict case — Bank Methodology vs Fallback: Under our Bank-Approved Audit Rating Policy (BARP-2026 §4.2), any single-instance access control exception with a verified automated detective alert operating within 24 hours must be rated 'Medium', even if privileged access is involved. Evaluate an exception where 1 of 40 privileged terminations was revoked 2 days late but the automated SIEM alert flagged and blocked login attempts within 4 hours.",
+      "expected_output": "Applies Priority 1 (Bank-approved methodology BARP-2026 §4.2) unconditionally over generic/fallback High severity intuition, rates the finding Medium citing BARP-2026 §4.2, and does not emit the fallback drafting-aid disclaimer.",
+      "files": [],
+      "expectations": [
+        "Required: applies Bank-Approved Audit Rating Policy BARP-2026 §4.2 unconditionally and assigns Medium",
+        "Prohibited: must not override bank methodology with a generic High rating or fallback matrix",
+        "Required: cites BARP-2026 §4.2 in rating_methodology"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Conflict case — Disputed Cause with Accepted Condition: Management signed off on the Condition (14 of 22 critical third-party vendors lack annual risk reassessments, oldest 31 months) under TPRM Policy §3.2 (v2.0). However, the Head of Procurement disputes your diagnosed cause (vacant analyst role with no backup ownership) and insists 'vendors delayed sending SOC 2 questionnaires,' proposing only to 'send reminder emails to vendors.' Draft the finding and response evaluation.",
+      "expected_output": "Keeps the Verified fact Condition intact, sets cause_status to disputed (explicitly provisional, not locked), separates Auditor inference (ownership_gap) from Management representation (vendor delay), rejects the reminder-only response against the 5 action-plan tests, adds disputed_cause to upstream_holds, and drafts a neutral Auditor's Comment.",
+      "files": [],
+      "expectations": [
+        "Required: preserves Verified fact Condition (14 of 22, oldest 31 months) unchanged",
+        "Required: marks cause_status as disputed / provisional rather than locked or silently conceding",
+        "Required: separates Auditor inference from Management representation",
+        "Required: rejects 'send reminder emails' under the cause-closure and closure-testability checks and includes an Auditor's Comment"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Conflict case — High Finding with Infeasible Interim Control: Legacy Core-Banking batch architecture hard-codes loan fee overrides with no maker-checker flag; a vendor patch is scheduled for 2027-03-31. Daily manual reconciliation of 120,000 nightly loan postings is operationally impossible with the 2-person Treasury Ops team, and no automated extract exists before the patch. Rated High under Bank Methodology v3.0. Draft the finding and interim control disposition.",
+      "expected_output": "Refuses to fabricate an unworkable daily manual interim control, explicitly records interim_control as infeasible with technical/capacity basis, quantifies the unmitigated exposure window until 2027-03-31, and logs an upstream hold requiring CAE and Supervisory Board notification/escalation.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not invent a fake or unfeasible manual interim control (such as checking 120,000 daily postings)",
+        "Required: records interim_control as Infeasible with reason and documents unmitigated interim exposure through 2027-03-31",
+        "Required: adds mandatory CAE / Supervisory Board escalation to upstream_holds"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "Hãy viết một phát hiện kiểm toán bằng tiếng Việt: Kiểm toán viên phát hiện 4 hồ sơ cấp tín dụng doanh nghiệp thiếu chữ ký phê duyệt cấp 2 trong Quý 3/2026 (mẫu chọn xét đoán 20 hồ sơ trong tổng số 180 hồ sơ giải ngân). Dự thảo ghi căn cứ theo 'Thông tư 13/2018/TT-NHNN' nhưng chưa kiểm tra văn bản sửa đổi/hiệu lực hiện hành, và giao cho 'Anh Hùng - Trưởng phòng Tín dụng' khắc phục.",
+      "expected_output": "Writes natural Vietnamese using standard banking governance terminology, triggers the Legal Currency Gate on Thông tư 13/2018/TT-NHNN (refusing to treat it as binding criteria without verification), replaces personal name with accountable_role unless formally assigned, and reports the judgmental sample without extrapolation.",
+      "files": [],
+      "expectations": [
+        "Required: responds in Vietnamese using accurate banking audit terms (kiểm soát, chức danh chịu trách nhiệm, giới hạn suy rộng mẫu)",
+        "Required: triggers Legal Currency Gate hold [UNVERIFIED LEGAL CURRENCY — EXCLUDE AS BINDING CRITERIA UNTIL VERIFIED] for Thông tư 13/2018/TT-NHNN rather than assuming current legal force",
+        "Prohibited: must not extrapolate the 20% sample rate (4/20) to all 180 loans",
+        "Required: uses accountable_role (e.g., Trưởng phòng Tín dụng) rather than defaulting to a personal name unless formally assigned in source"
+      ]
+    }
+  ]
+}

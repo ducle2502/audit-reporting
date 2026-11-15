@@ -1,0 +1,4 @@
+interface:
+  display_name: "IA Report Writer"
+  short_description: "Assemble GIAS 15.1-aligned bank audit reports and multi-altitude briefs"
+  default_prompt: "Use $audit-report-writer to assemble audience-tailored audit deliverables from these vetted findings while preserving canonical values, evidentiary labels, holistic opinion discipline, and investigation firewalls."

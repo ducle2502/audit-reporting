@@ -1,0 +1,4 @@
+interface:
+  display_name: "IA Finding Writer"
+  short_description: "Draft evidence-bound 5-Cs audit findings, ratings, and response QA"
+  default_prompt: "Use $audit-finding-writer to turn these workpaper exceptions into QA-ready 5-Cs audit findings while preserving evidentiary labels, sampling limits, and legal-currency holds."

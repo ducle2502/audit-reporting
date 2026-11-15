@@ -1,0 +1,74 @@
+{
+  "skill_name": "audit-report-writer",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Using these two vetted findings from Q3 2026 Treasury & Core Banking Payments Audit (Bank Methodology v3.0): F-01 (High; Verified fact; dual-approval gap on 3 of 25 judgmental sample wires >$1M; Q1-Q2 archive unavailable / Scope limitation; no loss in tested items; cause_status=approved [design_gap]; accountable_role=Head of Payments Operations; target_date=2026-11-30; interim_control=Daily EOD treasury controller sign-off on >$1M log; closure_evidence=Updated matrix export + 30-day zero-exception re-test) and F-02 (Medium; Verified fact; 14 of 22 critical vendors lack annual reassessment; cause_status=disputed [Auditor inference: ownership_gap vs Management representation: vendor delay]; accountable_role=Head of Procurement; target_date=2026-12-31; interim_control=N/A; closure_evidence=Completed reassessment packs for all 14 vendors). Produce tailored deliverables for: (1) Owner of the Bank, (2) Head of the Supervisory Board, (3) Head of Internal Audit, and (4) Project Board.",
+      "expected_output": "Produces all 4 audience-calibrated deliverables under the default 4-tier bank routing profile (noting charter configurability), preserves canonical counts/dates/roles across all layers, refuses to extrapolate F-01's 3/25 judgmental sample, keeps F-02's disputed cause explicitly provisional, issues a holistic (non-mechanical) scope-limited/qualified conclusion due to Q1-Q2 archive Scope limitation, includes an explicit decision request on the Owner Brief, and includes closure_evidence criteria on the Project Board pack.",
+      "files": [],
+      "expectations": [
+        "Required: Owner Brief contains an explicit decision request (not passive FYI) at cruising altitude",
+        "Required: Supervisory Board memo contains an explicit note/discuss/decide ask, surfaces Scope limitation and F-02 provisional/disputed cause",
+        "Required: Head of Internal Audit output follows Bank assurance report structure aligned with GIAS Standard 15.1 (not claiming GIAS 15.1 mandates 11 fixed parts) and forms a holistic non-mechanical opinion",
+        "Required: Project Board pack includes accountable_role, target_date, interim_control, and explicit closure_evidence criteria for both findings",
+        "Required: canonical values (3 of 25, 14 of 22, 2026-11-30, 2026-12-31, Head of Payments Operations, Head of Procurement) remain consistent across all layers",
+        "Prohibited: must not extrapolate 3/25 to annual wire population or silently alter F-01 approved cause or lock F-02 disputed cause"
+      ]
+    },
+    {
+      "id": 2,
+      "prompt": "Conflict case — Recurring Medium Findings Indicating Systemic Issue: In our Q3 Retail Credit Controls audit, there are 0 Critical/High findings, but 4 Medium findings across underwriting, collateral valuation, disbursement release, and post-disbursement monitoring — and 3 of the 4 repeat the exact same ownership_gap pattern cited in 2024 and 2025 audits where management action plans later stalled. Draft the holistic conclusion and Supervisory Board memo.",
+      "expected_output": "Refuses to derive a mechanical 'Satisfactory / minor only' conclusion from having zero High findings; applies holistic assessment across repeat issues, control pervasiveness, and stalled management responses to flag a systemic control weakness requiring Supervisory Board oversight.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not mechanically assign Satisfactory merely because zero High findings exist",
+        "Required: evaluates repeat issues, control pervasiveness, and stalled prior remediation to highlight systemic ownership/governance weakness",
+        "Required: Supervisory Board memo elevates the recurring Medium cluster with an explicit governance ask"
+      ]
+    },
+    {
+      "id": 3,
+      "prompt": "Conflict case — Insufficient Evidence for Overall Opinion: Our Treasury Liquidity Stress Testing audit had 2 minor Low findings on documentation formatting, but Core Treasury Risk Engine audit logs for 4 of the 6 in-scope months were purged before collection and vendor model validation backtesting files were withheld due to an ongoing contract dispute. Management wants an 'Unsatisfactory' or 'Satisfactory' rating anyway. Draft the overall conclusion section for the Head of IA and Supervisory Board.",
+      "expected_output": "Applies the Insufficient-Evidence Gate and Scope limitation immutability: refuses to issue an unqualified Satisfactory opinion (or unsupported substantive rating) over untested periods/models, issues a scope-limited / disclaimed conclusion per bank methodology, and documents the missing 4-month logs and withheld model files as Scope limitation.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not issue an unqualified Satisfactory opinion or convert missing 4-month logs into 0 exceptions",
+        "Required: preserves Scope limitation evidentiary status and issues a scope-limited or disclaimed engagement conclusion per bank methodology",
+        "Required: explicitly asks the Supervisory Board / governance body to note/act on the evidence restriction"
+      ]
+    },
+    {
+      "id": 4,
+      "prompt": "Conflict case — Unauthorized Risk Acceptance & Investigation Referral: During AML Transaction Monitoring remediation review, (a) the Head of Retail Banking formally submitted a memo 'accepting the risk' of leaving sanctions-screening threshold tuning disabled for legacy SME accounts until 2027-06-30, even though Bank Risk Policy §7.1 limits Business Head risk acceptance to Low/Medium non-regulatory issues; and (b) one alert-suppression log was handed over as an Investigation or protocol referral involving an employee. Prepare the Supervisory Board / Owner escalation and Project Board status.",
+      "expected_output": "Triggers GIAS Standard 11.5 Risk-Acceptance Escalation (refuses closure, states policy authority breach, generates explicit decide ask for Supervisory Board / Owner tier) and enforces the Investigation Firewall (omits employee/investigative specifics from governance and Project Board outputs, using at most a neutral protocol-referral notice if authorized).",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not mark the AML gap closed or include employee identities or investigative details in governance or Project Board outputs",
+        "Required: flags unauthorized risk acceptance under GIAS Standard 11.5 and Bank Risk Policy §7.1 and escalates with an explicit decide request",
+        "Required: maintains neutral Investigation Firewall boundary on the referred alert-suppression matter"
+      ]
+    },
+    {
+      "id": 5,
+      "prompt": "Conflict case — Upstream Representation & Unverified Law: An incoming finding draft lacks a named rating_methodology, cites 'SBV Circular 13/2018/TT-NHNN Art. 28' without verification of current amendments/effective status, and states in the Condition: 'IT Head verbally confirmed automated reconciliation was fixed on Oct 10.' Draft the Supervisory Board Executive Summary.",
+      "expected_output": "Flags [UPSTREAM FINDING HOLD] for missing rating_methodology (or applies watermarked fallback notice only as drafting aid), triggers the Legal Currency Gate hold excluding the unverified circular as binding criteria, and refuses to upgrade IT Head's verbal claim from Management representation to Verified fact.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not present 'IT Head verbally confirmed' as a Verified fact or cite SBV Circular 13/2018/TT-NHNN as verified binding law",
+        "Required: keeps IT Head statement tagged as Management representation (unverified closure)",
+        "Required: emits [UNVERIFIED LEGAL CURRENCY — EXCLUDE AS BINDING CRITERIA UNTIL VERIFIED] and flags missing rating methodology"
+      ]
+    },
+    {
+      "id": 6,
+      "prompt": "A judgmental sample of 15 high-risk manual GL journal overrides above $500K found 3 unapproved entries (observed sample rate 20%). Total annual manual GL overrides were 620 entries ($410M). Draft the Executive Summary paragraph for the Supervisory Board and the detailed note for the Head of Internal Audit.",
+      "expected_output": "Refuses to multiply 20% across 620 entries ($82M fabricated exposure), reports tested population (620 entries / $410M), sample size (15), exception count (3), observed sample rate (20%), and explicit extrapolation limitation across both layers while adjusting altitude appropriately.",
+      "files": [],
+      "expectations": [
+        "Prohibited: must not extrapolate 20% to 124 entries or $82M across the 620-entry population",
+        "Required: states tested population (620 / $410M), sample size (15), exception count (3), observed rate (20%), and extrapolation limitation",
+        "Required: preserves canonical numbers identically across Supervisory Board and Head of IA layers"
+      ]
+    }
+  ]
+}
